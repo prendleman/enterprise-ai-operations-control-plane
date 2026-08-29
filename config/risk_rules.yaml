@@ -1,0 +1,41 @@
+risk_weights:
+  data_classification:
+    public: 0
+    internal: 5
+    confidential: 15
+    restricted: 30
+    regulated: 40
+  autonomous_actions: 20
+  customer_facing: 15
+  production_target: 10
+  regulated_data: 20
+  external_provider: 10
+  write_access: 25
+  high_budget: 10
+
+thresholds:
+  low: 20
+  moderate: 45
+  high: 70
+  # above high => critical
+
+required_controls:
+  low:
+    - structured_logging
+  moderate:
+    - structured_logging
+    - owner_approval
+    - cost_budget
+  high:
+    - structured_logging
+    - security_review
+    - ai_operations_approval
+    - human_review_gates
+    - cost_budget
+  critical:
+    - exception_required
+    - security_review
+    - architecture_review
+    - human_review_gates
+    - least_privilege_tools
+    - no_unrestricted_write

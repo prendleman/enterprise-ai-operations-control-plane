@@ -1,0 +1,105 @@
+models:
+  bedrock_claude_sonnet:
+    provider: bedrock
+    model_id: anthropic.claude-sonnet
+    region: us-east-1
+    status: approved
+    workloads:
+      - knowledge_assistant
+      - software_engineering
+      - productivity
+      - analytics
+    restricted_data:
+      - regulated
+    human_review: conditional
+    cost_class: medium
+    logging_required: true
+
+  bedrock_titan_embed:
+    provider: bedrock
+    model_id: amazon.titan-embed-text-v2
+    region: us-east-1
+    status: approved
+    workloads:
+      - knowledge_assistant
+      - analytics
+    restricted_data: []
+    human_review: false
+    cost_class: low
+    logging_required: true
+
+  openai_gpt4o_mini:
+    provider: openai
+    model_id: gpt-4o-mini
+    region: global
+    status: approved
+    workloads:
+      - productivity
+      - software_engineering
+      - knowledge_assistant
+    restricted_data:
+      - regulated
+      - restricted
+    human_review: conditional
+    cost_class: medium
+    logging_required: true
+
+  azure_openai_gpt4o:
+    provider: azure_openai
+    model_id: gpt-4o
+    region: eastus
+    status: approved
+    workloads:
+      - productivity
+      - knowledge_assistant
+      - customer_facing
+    restricted_data:
+      - regulated
+    human_review: true
+    cost_class: high
+    logging_required: true
+
+  anthropic_claude_haiku:
+    provider: anthropic
+    model_id: claude-3-5-haiku-latest
+    region: global
+    status: approved
+    workloads:
+      - productivity
+      - software_engineering
+      - experiment
+    restricted_data:
+      - regulated
+      - restricted
+    human_review: conditional
+    cost_class: medium
+    logging_required: true
+
+  local_llm:
+    provider: local
+    model_id: local-instruct-7b
+    region: on-prem
+    status: approved
+    workloads:
+      - restricted_environment
+      - experiment
+      - knowledge_assistant
+    restricted_data: []
+    human_review: false
+    cost_class: low
+    logging_required: true
+
+  experimental_external:
+    provider: openai
+    model_id: experimental-unapproved
+    region: global
+    status: unapproved
+    workloads:
+      - experiment
+    restricted_data:
+      - confidential
+      - restricted
+      - regulated
+    human_review: true
+    cost_class: high
+    logging_required: true

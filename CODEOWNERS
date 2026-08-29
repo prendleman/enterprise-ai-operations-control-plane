@@ -1,0 +1,8 @@
+# Replace placeholder teams with your GitHub org teams.
+
+* @ai-operations
+
+/app/security/ @security-engineering
+/config/ @ai-operations @security-engineering
+/.github/ @ai-operations @security-engineering
+/docs/ai-operations-charter.md @ai-operations

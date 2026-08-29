@@ -1,0 +1,44 @@
+name: Security
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  schedule:
+    - cron: "0 9 * * 1"
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+      - run: python -m bandit -r app -ll
+      - run: python -m pip_audit
+      - name: Heuristic secret scan
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re, sys
+          patterns = [re.compile(r"sk-[A-Za-z0-9]{20,}"), re.compile(r"ghp_[A-Za-z0-9]{20,}")]
+          findings = []
+          for path in Path(".").rglob("*"):
+              if not path.is_file() or any(p in path.parts for p in {".git", ".venv", "htmlcov", ".mypy_cache"}):
+                  continue
+              if path.suffix.lower() not in {".py", ".md", ".yml", ".yaml", ".toml", ".txt", ".env"}:
+                  continue
+              text = path.read_text(encoding="utf-8", errors="ignore")
+              for pattern in patterns:
+                  if pattern.search(text):
+                      findings.append(str(path))
+          if findings:
+              print(findings)
+              sys.exit(1)
+          print("No high-confidence secret patterns found.")
+          PY

@@ -1,0 +1,36 @@
+approval_rules:
+  low:
+    automatic: true
+    reviewers: []
+  moderate:
+    automatic: false
+    reviewers: [business_owner]
+  high:
+    automatic: false
+    reviewers: [ai_operations, security]
+  critical:
+    automatic: false
+    eligible: false
+    reviewers: [ai_operations, security, architecture]
+    exception_required: true
+
+policy_rules:
+  - id: block_unapproved_model
+    description: Unapproved models cannot be auto-approved.
+    severity: high
+  - id: restricted_data_external_provider
+    description: Restricted/regulated data with external providers requires review.
+    severity: high
+  - id: autonomous_customer_facing
+    description: Customer-facing autonomous agents require elevated controls.
+    severity: critical
+  - id: financial_write_access
+    description: Unrestricted financial write access is blocked without exception.
+    severity: critical
+
+sandbox:
+  max_monthly_budget_usd: 2500
+  allowed_data_classes: [public, internal, confidential]
+  require_logging: true
+  default_duration_days: 90
+  deny_autonomous_write: true

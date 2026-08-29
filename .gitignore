@@ -1,0 +1,55 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Testing / coverage
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+coverage.xml
+.tox/
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Local runtime / secrets
+.env
+.env.*
+!.env.example
+*.db
+*.sqlite
+*.sqlite3
+data/*.db
+data/*.sqlite
+data/ai_ops.db
+!data/.gitkeep
+
+# Logs / artifacts
+*.log
+logs/
+artifacts/
+release-metadata.json
+
+# Docker / Streamlit
+.docker/
+.streamlit/secrets.toml

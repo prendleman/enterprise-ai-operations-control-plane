@@ -1,0 +1,25 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      AI_PROVIDER: mock
+      DATABASE_URL: sqlite:///./data/ai_ops.db
+      CONFIG_DIR: /app/config
+    volumes:
+      - ./data:/app/data
+      - ./config:/app/config:ro
+
+  dashboard:
+    build: .
+    command: streamlit run dashboard/app.py --server.port 8501 --server.address 0.0.0.0
+    ports:
+      - "8501:8501"
+    environment:
+      DATABASE_URL: sqlite:///./data/ai_ops.db
+    volumes:
+      - ./data:/app/data
+      - ./dashboard:/app/dashboard:ro
+    depends_on:
+      - api
