@@ -1,4 +1,6 @@
 # Enterprise AI Operations Control Plane
+[![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 
 Enterprise AI Operations Control Plane is a working reference architecture for operating AI as a governed enterprise capability, combining use-case intake, portfolio prioritization, model and agent governance, risk-based approvals, exceptions, cost visibility, adoption metrics, and executive oversight.
 
