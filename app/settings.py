@@ -21,7 +21,7 @@ class Settings(BaseSettings):
     log_level: str = Field(default="INFO", alias="LOG_LEVEL")
     database_url: str = Field(default="sqlite:///./data/ai_ops.db", alias="DATABASE_URL")
     config_dir: str = Field(default="config", alias="CONFIG_DIR")
-    host: str = Field(default="0.0.0.0", alias="HOST")
+    host: str = Field(default="127.0.0.1", alias="HOST")
     api_port: int = Field(default=8000, alias="API_PORT")
 
     @property
